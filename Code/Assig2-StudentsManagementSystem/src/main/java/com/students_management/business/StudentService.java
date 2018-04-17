@@ -18,11 +18,27 @@ public class StudentService {
 		return studentJpaRepository.save(student);
 	}
 
-	public Student findStudent(String username) {
+	public Student getStudent(String username) {
 		return studentJpaRepository.findByAccountInfoUsername(username);
 	}
 	
-	public List<Student> findAll() {
+	public List<Student> getAll() {
 		return studentJpaRepository.findAll();
+	}
+	
+	public Student updateInformation(String address, String email, String phone, String password) {
+		
+		Student persistentStudent = StudentSessionData.getLoggedInStudent();
+		
+		persistentStudent.setAddress(address);
+		persistentStudent.setEmail(email);
+		persistentStudent.setPhone(phone);
+		persistentStudent.setPassword(password);
+		
+		return studentJpaRepository.save(persistentStudent);
+	}
+	
+	public void initSession(String username) {
+		StudentSessionData.setLoggedInStudent(getStudent(username));
 	}
 }

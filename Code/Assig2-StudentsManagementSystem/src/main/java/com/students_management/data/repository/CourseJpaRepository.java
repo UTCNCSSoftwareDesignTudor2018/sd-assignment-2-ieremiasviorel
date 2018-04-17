@@ -1,5 +1,6 @@
 package com.students_management.data.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,4 +14,8 @@ public interface CourseJpaRepository extends JpaRepository<Course, Long> {
 	public Optional<Course> findById(Long id);
 	
 	public Course findByCourseInfoCode(String code);
+	
+	public Course findByCourseInfoName(String name);
+	
+	public List<Course> findAll();
 }

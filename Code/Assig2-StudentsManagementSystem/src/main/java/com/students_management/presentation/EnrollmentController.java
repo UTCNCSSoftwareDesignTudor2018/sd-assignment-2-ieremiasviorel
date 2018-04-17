@@ -17,7 +17,7 @@ public class EnrollmentController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String insertEnrollment() {
 		
-		enrollmentService.createEnrollment("vieremias", "SD");
+		enrollmentService.createEnrollment("SD");
 		
 		return "OK";
 	}

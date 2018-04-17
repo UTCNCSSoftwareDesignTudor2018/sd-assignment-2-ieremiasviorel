@@ -13,17 +13,21 @@ public class Enrollment extends BaseEntity {
 
 	private static final long serialVersionUID = -8609108076637770386L;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "student_id")
 	protected Student student;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "course_id")
 	protected Course course;
 
 	@Column(name = "grade")
 	protected Float grade;
 
+	public Enrollment() {
+		super();
+	}
+	
 	public Enrollment(Student student, Course course) {
 		this(student, course, null);
 	}
@@ -33,10 +37,6 @@ public class Enrollment extends BaseEntity {
 		this.student = student;
 		this.course = course;
 		this.grade = grade;
-	}
-	
-	public Enrollment() {
-		super();
 	}
 
 	public Student getStudent() {

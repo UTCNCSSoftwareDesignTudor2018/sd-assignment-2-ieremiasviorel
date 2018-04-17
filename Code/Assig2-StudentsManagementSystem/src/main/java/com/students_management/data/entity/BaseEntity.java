@@ -21,7 +21,7 @@ public abstract class BaseEntity implements Serializable {
 
 	@Transient
 	protected static Calendar calendar = Calendar.getInstance();
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")

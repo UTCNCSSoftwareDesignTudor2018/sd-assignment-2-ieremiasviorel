@@ -21,7 +21,7 @@ public class CourseController {
 	public String insertCourse() {
 
 		Calendar cal = Calendar.getInstance();
-		Course c = new Course("Software Design", "SD", "Nice course", cal.getTime(), cal.getTime(), cal.getTime());
+		Course c = new Course("Intelligent Systems", "IS", "Nice course", cal.getTime(), cal.getTime(), cal.getTime());
 
 		courseService.createCourse(c);
 		return "OK";

@@ -79,7 +79,7 @@ public class User extends BaseEntity {
 	public void setPhone(String phone) {
 		getUserInfo().setPhone(phone);
 	}
-	
+
 	public String getUsername() {
 		return getAccountInfo().getUsername();
 	}

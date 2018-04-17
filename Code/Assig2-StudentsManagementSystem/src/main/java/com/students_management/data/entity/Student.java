@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -22,8 +23,12 @@ public class Student extends User {
 	@JoinColumn(name = "group_id")
 	protected Group group;
 
-	@OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	protected List<Enrollment> enrollments;
+
+	public Student() {
+		super();
+	}
 
 	public Student(UserInfo userInfo, AccountInfo accountInfo, Group group) {
 		super();
@@ -37,10 +42,6 @@ public class Student extends User {
 			String username, String password, Group group) {
 		this(new UserInfo(firstName, lastName, idNumber, address, email, phone),
 				new AccountInfo(username, password, StatusType.ACTIVE_STATUS.asString(), calendar.getTime()), group);
-	}
-	
-	public Student() {
-		super();
 	}
 
 	public Group getGroup() {
@@ -57,5 +58,9 @@ public class Student extends User {
 
 	public void setEnrollments(List<Enrollment> enrollments) {
 		this.enrollments = enrollments;
+	}
+	
+	public void addEnrollment(Enrollment enrollment) {
+		this.enrollments.add(enrollment);
 	}
 }

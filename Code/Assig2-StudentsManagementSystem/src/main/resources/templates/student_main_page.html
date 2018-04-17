@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1">
+	<link rel="stylesheet" href="/css/student_main_page.css"/>
+	<script src="/js/student_main_page.js"></script>
+	<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+	<title>Main Page</title>
+</head>
+<body>
+	<!-- Tab links -->
+	<div class="tab">
+ 		<button class="tablinks" onclick="openTab(event, 'Profile')">Profile</button>
+ 		<button class="tablinks" onclick="openTab(event, 'Enrollments')">Enrollments</button>
+ 		<button class="tablinks" onclick="openTab(event, 'Courses')">Courses</button>
+	</div>
+	
+	<!-- Tab content -->
+	<div id="Profile" class="tabcontent">
+		<h3 th:text="${loggedInStudent.firstName + ' ' + loggedInStudent.lastName}"></h3>
+		<!-- The modal -->
+		<div id="editProfileModal" class="modal">
+			<div class="modal-content">
+				<form action="#" th:action="@{/students/updateInfo}" method="post">
+					<h3 th:text="${loggedInStudent.firstName + ' ' + loggedInStudent.lastName}"></h3>
+					<table>
+						<tr>
+							<td>First Name</td>
+							<td><p th:text="${loggedInStudent.firstName}"></td>
+						</tr>
+						<tr>
+							<td>Last Name</td>
+							<td><p th:text="${loggedInStudent.lastName}"></td>
+						</tr>
+						<tr>
+							<td>ID Number</td>
+							<td><p th:text="${loggedInStudent.idNumber}"></td>
+						</tr>
+						<tr>
+							<td>Address</td>
+							<td><input type="text" name="address" th:value="${loggedInStudent.address}"></td>
+						</tr>
+						<tr>
+							<td>Email</td>
+							<td><input type="text" name="email" th:value="${loggedInStudent.email}"></td>
+						</tr>
+						<tr>
+							<td>Phone</td>
+							<td><input type="text" name="phone" th:value="${loggedInStudent.phone}"></td>
+						</tr>
+						<tr>
+							<td>User Name</td>
+							<td><p th:text="${loggedInStudent.username}"></td>
+						</tr>
+						<tr>
+							<td>Password</td>
+							<td><input type="password" name="passwrod"></td>
+						</tr>
+					</table>
+					<button class="modalButton" type="submit">Save</button>
+					<button class="modalButton" id="closeEditProfileBtn" type="reset" onclick="closeModal()">Cancel</button>
+				</form>
+  			</div>
+		</div>
+		
+		<!-- The modal trigger button -->
+		<button id="editProfileBtn" onclick="openModal()">Edit</button>
+		
+		<fieldset>
+			<legend>Personal Info</legend>
+			<table>
+				<tr>
+					<td>First Name</td>
+					<td><p th:text="${loggedInStudent.firstName}"></td>
+				</tr>
+				<tr>
+					<td>Last Name</td>
+					<td><p th:text="${loggedInStudent.lastName}"></td>
+				</tr>
+				<tr>
+					<td>ID Number</td>
+					<td><p th:text="${loggedInStudent.idNumber}"></td>
+				</tr>
+				<tr>
+					<td>Address</td>
+					<td><p th:text="${loggedInStudent.address}"></td>
+				</tr>
+				<tr>
+					<td>Email</td>
+					<td><p th:text="${loggedInStudent.email}"></td>
+				</tr>
+				<tr>
+					<td>Phone</td>
+					<td><p th:text="${loggedInStudent.phone}"></td>
+				</tr>
+			</table>
+		</fieldset>
+		<fieldset>
+			<legend>Account Info</legend>
+			<table>
+				<tr>
+					<td>User Name</td>
+					<td><p th:text="${loggedInStudent.username}"></td>
+				</tr>
+				<tr>
+					<td>Status</td>
+					<td><p th:text="${loggedInStudent.status}"></td>
+				</tr>
+				<tr>
+					<td>Registration Date</td>
+					<td><p th:text="${loggedInStudent.registrationDate}"></td>
+				</tr>
+			</table>
+		</fieldset>
+		<fieldset>
+			<legend>Group Info</legend>
+			<table>
+				<tr>
+					<td>Faculty</td>
+					<td><p th:text="${loggedInStudent.group.faculty}"></p></td>
+				</tr>
+				<tr>
+					<td>Specialization</td>
+					<td><p th:text="${loggedInStudent.group.specialization}"></p></td>
+				</tr>
+				<tr>
+					<td>Number</td>
+					<td><p th:text="${loggedInStudent.group.number}"></p></td>
+				</tr>
+			</table>
+		</fieldset>
+	</div>
+	
+	<!-- Tab content -->
+	<div id="Enrollments" class="tabcontent">
+		<h3 th:text="${loggedInStudent.firstName + ' ' + loggedInStudent.lastName}"></h3>
+
+		<table>
+			<tr>
+				<th>Code</th>
+				<th>Start Date</th>
+				<th>End Date</th>
+				<th>Exam Date</th>
+				<th>Grade</th>
+			</tr>
+			<tr th:each="enrollment : ${loggedInStudent.enrollments}">
+				<td th:text="${enrollment.course.code}"></td>
+				<td th:text="${enrollment.course.startDate}"></td>
+				<td th:text="${enrollment.course.endDate}"></td>
+				<td th:text="${enrollment.course.examDate}"></td>
+				
+				<td th:if="${enrollment.grade != null}" th:text="${enrollment.grade}"></td>
+				<td th:unless="${enrollment.grade != null}">Not graded</td>
+			</tr>
+		</table>
+	</div>
+	
+	<!-- Tab content -->
+	<div id="Courses" class="tabcontent">
+		<h3 th:text="${loggedInStudent.firstName + ' ' + loggedInStudent.lastName}"></h3>
+
+		<form action="#" th:action="@{/students/enrollCourse}" method="post">
+			<table id="courseTable">
+				<tr>
+					<th></th>
+					<th>Name</th>
+					<th>Code</th>
+					<th>Description</th>
+					<th>Start Date</th>
+					<th>End Date</th>
+				</tr>
+				<!-- 
+				<tr class="courseRow" th:each="course : ${unenrolledCourses}" id="${course.courseInfo.code}" onclick="selectCourse(this)")>
+					<td th:text="${course.courseInfo.name}"></td>
+					<td th:text="${course.courseInfo.code}"></td>
+					<td th:text="${course.courseInfo.description}"></td>
+					<td th:text="${course.startDate}"></td>
+					<td th:text="${course.endDate}"></td>
+				</tr>
+				-->
+				<tr th:each="course : ${unenrolledCourses}">
+					<td><input class="courseCheckbox" type="checkbox" th:name="${course.courseInfo.code}"/></td>
+					<td th:text="${course.courseInfo.name}"></td>
+					<td th:text="${course.courseInfo.code}"></td>
+					<td th:text="${course.courseInfo.description}"></td>
+					<td th:text="${course.startDate}"></td>
+					<td th:text="${course.endDate}"></td>
+				</tr>
+			</table>
+			<input type="hidden" id="courseCode" name="courseCode"/>
+			
+		</form>
+		<button id="enrollCourseBtn">Enroll</button>
+	</div>
+	<script>
+		jQuery("#enrollCourseBtn").on('click', function() {
+			var checkedCourses = [];
+			$('input[class = courseCheckbox]').each(function() {
+				if (this.checked) {
+					checkedCourses.push($(this).attr('name'));
+					this.checked = false;
+					this.disabled = true;
+				}
+			});
+			console.log(JSON.stringify({
+				paramName : checkedCourses
+			}));
+			$.ajax({
+				type : "POST",
+				contentType : "application/json",
+				dataType : 'json',
+				data : JSON.stringify(checkedCourses),
+				url : "http://localhost:8080/students/enrollCourse",
+				timeout : 100000,
+				success : function(data) {
+					console.log("SUCCESS: ", data);
+				},
+				error : function(e) {
+					console.log("ERROR: ", e);
+				},
+				done : function(e) {
+					console.log("DONE");
+				}
+			});
+		});
+	</script>
+</body>
+</html>

@@ -23,4 +23,43 @@ public class Instructor extends BaseEntity {
 	
 	@Column(name = "role")
 	protected String role;
+	
+	public Instructor() {
+		super();
+	}
+	
+	public Instructor(Teacher teacher, Course course) {
+		this(teacher, course, "default");
+	}
+	
+	public Instructor(Teacher teacher, Course course, String role) {
+		super();
+		this.teacher = teacher;
+		this.course = course;
+		this.role = role;
+	}
+
+	public Teacher getTeacher() {
+		return teacher;
+	}
+
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
+	}
+
+	public Course getCourse() {
+		return course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
 }
