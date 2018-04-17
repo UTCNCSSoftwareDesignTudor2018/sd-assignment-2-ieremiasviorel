@@ -1,5 +1,7 @@
 package com.students_management.business;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,17 +27,21 @@ public class EnrollmentService {
 	}
 
 	public Enrollment createEnrollment(String courseCode) {
-		
+
 		Student pesistentStudent = studentService.getStudent(StudentSessionData.getLoggedInStudent().getUsername());
 		Course persistentCourse = courseService.getCourse(courseCode);
 
 		Enrollment enrollment = new Enrollment(pesistentStudent, persistentCourse);
 
 		pesistentStudent.addEnrollment(enrollment);
-		
+
 		StudentSessionData.setLoggedInStudent(pesistentStudent);
 		StudentSessionData.getAvailableCourses().remove(persistentCourse);
-		
+
 		return enrollmentJpaRepository.save(enrollment);
+	}
+
+	public List<Enrollment> getCourseEnrollments(Course course) {
+		return enrollmentJpaRepository.findAllByCourse(course);
 	}
 }

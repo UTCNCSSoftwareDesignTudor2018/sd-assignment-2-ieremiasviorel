@@ -16,7 +16,7 @@ public class GroupService {
 		return groupJpaRepository.save(group);
 	}
 	
-	public Group findGroup(String number) {
+	public Group getGroup(String number) {
 		return groupJpaRepository.findByNumber(number);
 	}
 }

@@ -2,8 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="ISO-8859-1">
-	<link rel="stylesheet" href="/css/student_main_page.css"/>
-	<script src="/js/student_main_page.js"></script>
+	<link rel="stylesheet" href="/css/teacher_main_page.css"/>
+	<script src="/js/teacher_main_page.js"></script>
 	<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
 	<title>Main Page</title>
 </head>
@@ -11,46 +11,46 @@
 	<!-- Tab links -->
 	<div class="tab">
  		<button class="tablinks" onclick="openTab(event, 'Profile')">Profile</button>
- 		<button class="tablinks" onclick="openTab(event, 'Enrollments')">Enrollments</button>
+ 		<button class="tablinks" onclick="openTab(event, 'Grading')">Grading</button>
  		<button class="tablinks" onclick="openTab(event, 'Courses')">Courses</button>
 	</div>
 	
 	<!-- Tab content -->
 	<div id="Profile" class="tabcontent">
-		<h3 th:text="${loggedInStudent.firstName + ' ' + loggedInStudent.lastName}"></h3>
+		<h3 th:text="${loggedInTeacher.firstName + ' ' + loggedInTeacher.lastName}"></h3>
 		<!-- The modal -->
 		<div id="editProfileModal" class="modal">
 			<div class="modal-content">
-				<form action="#" th:action="@{/students/updateInfo}" method="post">
-					<h3 th:text="${loggedInStudent.firstName + ' ' + loggedInStudent.lastName}"></h3>
+				<form action="#" th:action="@{/teachers/updateInfo}" method="post">
+					<h3 th:text="${loggedInTeacher.firstName + ' ' + loggedInTeacher.lastName}"></h3>
 					<table>
 						<tr>
 							<td>First Name</td>
-							<td><p th:text="${loggedInStudent.firstName}"></td>
+							<td><p th:text="${loggedInTeacher.firstName}"></td>
 						</tr>
 						<tr>
 							<td>Last Name</td>
-							<td><p th:text="${loggedInStudent.lastName}"></td>
+							<td><p th:text="${loggedInTeacher.lastName}"></td>
 						</tr>
 						<tr>
 							<td>ID Number</td>
-							<td><p th:text="${loggedInStudent.idNumber}"></td>
+							<td><p th:text="${loggedInTeacher.idNumber}"></td>
 						</tr>
 						<tr>
 							<td>Address</td>
-							<td><input type="text" name="address" th:value="${loggedInStudent.address}"></td>
+							<td><input type="text" name="address" th:value="${loggedInTeacher.address}"></td>
 						</tr>
 						<tr>
 							<td>Email</td>
-							<td><input type="text" name="email" th:value="${loggedInStudent.email}"></td>
+							<td><input type="text" name="email" th:value="${loggedInTeacher.email}"></td>
 						</tr>
 						<tr>
 							<td>Phone</td>
-							<td><input type="text" name="phone" th:value="${loggedInStudent.phone}"></td>
+							<td><input type="text" name="phone" th:value="${loggedInTeacher.phone}"></td>
 						</tr>
 						<tr>
 							<td>User Name</td>
-							<td><p th:text="${loggedInStudent.username}"></td>
+							<td><p th:text="${loggedInTeacher.username}"></td>
 						</tr>
 						<tr>
 							<td>Password</td>
@@ -71,27 +71,27 @@
 			<table>
 				<tr>
 					<td>First Name</td>
-					<td><p th:text="${loggedInStudent.firstName}"></td>
+					<td><p th:text="${loggedInTeacher.firstName}"></td>
 				</tr>
 				<tr>
 					<td>Last Name</td>
-					<td><p th:text="${loggedInStudent.lastName}"></td>
+					<td><p th:text="${loggedInTeacher.lastName}"></td>
 				</tr>
 				<tr>
 					<td>ID Number</td>
-					<td><p th:text="${loggedInStudent.idNumber}"></td>
+					<td><p th:text="${loggedInTeacher.idNumber}"></td>
 				</tr>
 				<tr>
 					<td>Address</td>
-					<td><p th:text="${loggedInStudent.address}"></td>
+					<td><p th:text="${loggedInTeacher.address}"></td>
 				</tr>
 				<tr>
 					<td>Email</td>
-					<td><p th:text="${loggedInStudent.email}"></td>
+					<td><p th:text="${loggedInTeacher.email}"></td>
 				</tr>
 				<tr>
 					<td>Phone</td>
-					<td><p th:text="${loggedInStudent.phone}"></td>
+					<td><p th:text="${loggedInTeacher.phone}"></td>
 				</tr>
 			</table>
 		</fieldset>
@@ -100,41 +100,48 @@
 			<table>
 				<tr>
 					<td>User Name</td>
-					<td><p th:text="${loggedInStudent.username}"></td>
+					<td><p th:text="${loggedInTeacher.username}"></td>
 				</tr>
 				<tr>
 					<td>Status</td>
-					<td><p th:text="${loggedInStudent.status}"></td>
+					<td><p th:text="${loggedInTeacher.status}"></td>
 				</tr>
 				<tr>
 					<td>Registration Date</td>
-					<td><p th:text="${loggedInStudent.registrationDate}"></td>
-				</tr>
-			</table>
-		</fieldset>
-		<fieldset>
-			<legend>Group Info</legend>
-			<table>
-				<tr>
-					<td>Faculty</td>
-					<td><p th:text="${loggedInStudent.group.faculty}"></p></td>
-				</tr>
-				<tr>
-					<td>Specialization</td>
-					<td><p th:text="${loggedInStudent.group.specialization}"></p></td>
-				</tr>
-				<tr>
-					<td>Number</td>
-					<td><p th:text="${loggedInStudent.group.number}"></p></td>
+					<td><p th:text="${loggedInTeacher.registrationDate}"></td>
 				</tr>
 			</table>
 		</fieldset>
 	</div>
 	
 	<!-- Tab content -->
-	<div id="Enrollments" class="tabcontent">
-		<h3 th:text="${loggedInStudent.firstName + ' ' + loggedInStudent.lastName}"></h3>
-
+	<div id="Grading" class="tabcontent">
+		<h3 th:text="${loggedInTeacher.firstName + ' ' + loggedInTeacher.lastName}"></h3>
+		
+		<div class="tab">
+			<button class="tablinks" th:each="enrollments : ${enrolledStudents}" th:text="${enrollments[0].course.code}" th:id="${enrollments[0].course.code}" onclick="openCourseTab(event)"></button>
+		</div>
+		
+		<div class="courseTabContent" th:each="enrollments : ${enrolledStudents}" th:id="${enrollments[0].course.code}">
+			<table>
+				<tr>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Grade</th>
+				</tr>
+				<tr th:each="enrollment : ${enrollments}">
+					<td th:text="${enrollment.student.firstName}"></td>
+					<td th:text="${enrollment.student.lastName}"></td>
+					<td th:text="${enrollment.grade}"></td>
+			</table>
+		</div>
+			<!-- 
+ 			<button class="tablinks" onclick="openTab(event, 'Profile')">Profile</button>
+ 			<button class="tablinks" onclick="openTab(event, 'Grading')">Grading</button>
+ 			<button class="tablinks" onclick="openTab(event, 'Courses')">Courses</button>
+ 			-->
+		
+		<!-- 
 		<table>
 			<tr>
 				<th>Code</th>
@@ -143,7 +150,7 @@
 				<th>Exam Date</th>
 				<th>Grade</th>
 			</tr>
-			<tr th:each="enrollment : ${loggedInStudent.enrollments}">
+			<tr th:each="enrollment : ${loggedInTeacher.enrollments}">
 				<td th:text="${enrollment.course.code}"></td>
 				<td th:text="${enrollment.course.startDate}"></td>
 				<td th:text="${enrollment.course.endDate}"></td>
@@ -153,11 +160,12 @@
 				<td th:unless="${enrollment.grade != null}">Not graded</td>
 			</tr>
 		</table>
+		-->
 	</div>
 	
 	<!-- Tab content -->
 	<div id="Courses" class="tabcontent">
-		<h3 th:text="${loggedInStudent.firstName + ' ' + loggedInStudent.lastName}"></h3>
+		<h3 th:text="${loggedInTeacher.firstName + ' ' + loggedInTeacher.lastName}"></h3>
 
 		<form action="#" th:action="@{/students/enrollCourse}" method="post">
 			<table id="courseTable">
@@ -183,38 +191,5 @@
 		</form>
 		<button id="enrollCourseBtn">Enroll</button>
 	</div>
-	<script>
-		jQuery("#enrollCourseBtn").on('click', function() {
-			var checkedCourses = [];
-			$('input[class = courseCheckbox]').each(function() {
-				if (this.checked) {
-					checkedCourses.push($(this).attr('name'));
-					this.checked = false;
-					this.disabled = true;
-				}
-			});
-			console.log(JSON.stringify({
-				paramName : checkedCourses
-			}));
-			$.ajax({
-				type : "POST",
-				contentType : "application/json",
-				dataType : 'json',
-				data : JSON.stringify(checkedCourses),
-				url : "http://localhost:8080/students/enrollCourse",
-				timeout : 100000,
-				success : function(data) {
-					console.log("SUCCESS: ", data);
-				},
-				error : function(e) {
-					location.reload(true);
-					console.log("ERROR: ", e);
-				},
-				done : function(e) {
-					console.log("DONE");
-				}
-			});
-		});
-	</script>
 </body>
 </html>

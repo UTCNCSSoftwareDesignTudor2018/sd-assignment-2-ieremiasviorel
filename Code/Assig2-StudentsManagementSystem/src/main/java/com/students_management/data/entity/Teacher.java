@@ -43,4 +43,8 @@ public class Teacher extends User {
 	public void setCourses(List<Instructor> courses) {
 		this.courses = courses;
 	}
+	
+	public void addCourse(Instructor course) {
+		courses.add(course);
+	}
 }

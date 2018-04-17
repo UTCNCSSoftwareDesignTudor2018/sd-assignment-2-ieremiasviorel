@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>TUC-N Management System</title>
+	</head>
+	<body>
+		<h2>TUC-N Internal Management System</h2>
+	
+		<form action="#" th:action="@{/teachers/mainPage}" method="post">
+			
+			<select name="teacherSelect">
+	       		<option value="">--</option>
+	       		<option
+	       			th:each="teacher : ${allTeachers}"
+	       			th:value="${teacher.username}"
+	       			th:text="${teacher.firstName} + ' ' +  ${teacher.lastName}">
+	       		</option>
+	   		</select>
+   		
+   			<button type="submit">Log in</button>
+   		</form>
+	</body>
+</html>
