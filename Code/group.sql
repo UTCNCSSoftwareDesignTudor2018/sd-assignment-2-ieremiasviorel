@@ -1,0 +1,11 @@
+insert into courses (id, timestamp, name, code, description, start_date, end_date, exam_date) values (50, '10/31/2017', 'Logic Programming', 'LP', 'Nice course', '10/31/2017', '10/05/2018', '12/05/2018');
+insert into courses (id, timestamp, name, code, description, start_date, end_date, exam_date) values (51, '10/31/2017', 'Functional Programming', 'FP', 'Nice course', '10/31/2017', '10/05/2018', '12/05/2018');
+insert into courses (id, timestamp, name, code, description, start_date, end_date, exam_date) values (52, '10/31/2017', 'Software Engineering', 'SE', 'Nice course', '10/31/2017', '10/05/2018', '12/05/2018');
+insert into courses (id, timestamp, name, code, description, start_date, end_date, exam_date) values (53, '10/31/2017', 'Artificial Intelligence', 'IAI', 'Nice course', '10/31/2017', '10/05/2018', '12/05/2018');
+insert into courses (id, timestamp, name, code, description, start_date, end_date, exam_date) values (54, '10/31/2017', 'Graphics Systems', 'GPS', 'Nice course', '10/31/2017', '10/05/2018', '12/05/2018');
+insert into courses (id, timestamp, name, code, description, start_date, end_date, exam_date) values (55, '10/31/2017', 'Microprocessor Design', 'DMP', 'Nice course', '10/31/2017', '10/05/2018', '12/05/2018');
+insert into courses (id, timestamp, name, code, description, start_date, end_date, exam_date) values (56, '10/31/2017', 'Software Design', 'SD', 'Nice course', '10/31/2017', '10/05/2018', '12/05/2018');
+insert into courses (id, timestamp, name, code, description, start_date, end_date, exam_date) values (57, '10/31/2017', 'Intelligent Systems', 'IS', 'Nice course', '10/31/2017', '10/05/2018', '12/05/2018');
+insert into courses (id, timestamp, name, code, description, start_date, end_date, exam_date) values (58, '10/31/2017', 'Formal Languages', 'FLT', 'Nice course', '10/31/2017', '10/05/2018', '12/05/2018');
+insert into courses (id, timestamp, name, code, description, start_date, end_date, exam_date) values (59, '10/31/2017', 'Computing Systems', 'SCS', 'Nice course', '10/31/2017', '10/05/2018', '12/05/2018');
+insert into courses (id, timestamp, name, code, description, start_date, end_date, exam_date) values (60, '10/31/2017', 'Image Processing', 'IP', 'Nice course', '10/31/2017', '10/05/2018', '12/05/2018');

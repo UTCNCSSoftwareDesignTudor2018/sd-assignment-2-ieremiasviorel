@@ -119,48 +119,25 @@
 		<h3 th:text="${loggedInTeacher.firstName + ' ' + loggedInTeacher.lastName}"></h3>
 		
 		<div class="tab">
-			<button class="tablinks" th:each="enrollments : ${enrolledStudents}" th:text="${enrollments[0].course.code}" th:id="${enrollments[0].course.code}" onclick="openCourseTab(event)"></button>
+			<button class="courseTablinks" th:each="enrollments : ${enrolledStudents}" th:text="${enrollments[0].course.code}" th:id="${enrollments[0].course.code}" onclick="openCourseTab(event)"></button>
 		</div>
 		
-		<div class="courseTabContent" th:each="enrollments : ${enrolledStudents}" th:id="${enrollments[0].course.code}">
+		<div class="courseTabContent" th:each="enrollments : ${enrolledStudents}" th:id="${enrollments[0].course.code + 'Tab'}">
 			<table>
 				<tr>
 					<th>First Name</th>
 					<th>Last Name</th>
+					<th>Group</th>
 					<th>Grade</th>
 				</tr>
 				<tr th:each="enrollment : ${enrollments}">
 					<td th:text="${enrollment.student.firstName}"></td>
 					<td th:text="${enrollment.student.lastName}"></td>
-					<td th:text="${enrollment.grade}"></td>
+					<td th:text="${enrollment.student.group.number}"></td>			
+					<td th:if="${enrollment.grade != null}" th:text="${enrollment.grade}"></td>
+					<td th:unless="${enrollment.grade != null}">Not graded</td>
 			</table>
 		</div>
-			<!-- 
- 			<button class="tablinks" onclick="openTab(event, 'Profile')">Profile</button>
- 			<button class="tablinks" onclick="openTab(event, 'Grading')">Grading</button>
- 			<button class="tablinks" onclick="openTab(event, 'Courses')">Courses</button>
- 			-->
-		
-		<!-- 
-		<table>
-			<tr>
-				<th>Code</th>
-				<th>Start Date</th>
-				<th>End Date</th>
-				<th>Exam Date</th>
-				<th>Grade</th>
-			</tr>
-			<tr th:each="enrollment : ${loggedInTeacher.enrollments}">
-				<td th:text="${enrollment.course.code}"></td>
-				<td th:text="${enrollment.course.startDate}"></td>
-				<td th:text="${enrollment.course.endDate}"></td>
-				<td th:text="${enrollment.course.examDate}"></td>
-				
-				<td th:if="${enrollment.grade != null}" th:text="${enrollment.grade}"></td>
-				<td th:unless="${enrollment.grade != null}">Not graded</td>
-			</tr>
-		</table>
-		-->
 	</div>
 	
 	<!-- Tab content -->

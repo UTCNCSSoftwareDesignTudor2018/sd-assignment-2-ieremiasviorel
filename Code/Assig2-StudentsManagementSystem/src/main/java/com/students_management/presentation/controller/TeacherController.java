@@ -54,12 +54,6 @@ public class TeacherController {
 		mv.addObject("loggedInTeacher", TeacherSessionData.getLoggedInTeacher());
 		mv.addObject("enrolledStudents", TeacherSessionData.getTeachersStudentsByCourse());
 		
-		for (List<Enrollment> lst : TeacherSessionData.getTeachersStudentsByCourse()) {
-			for (Enrollment e : lst) {
-				System.out.println(e.getCourse().getCode() + " | " + e.getStudent().getFirstName());
-			}
-		}
-
 		return mv;
 	}
 
