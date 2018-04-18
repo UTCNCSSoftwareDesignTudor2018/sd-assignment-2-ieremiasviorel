@@ -16,9 +16,11 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.students_management.business.CourseService;
 import com.students_management.business.EnrollmentService;
+import com.students_management.business.StudentReportService;
 import com.students_management.business.StudentService;
 import com.students_management.business.StudentSessionData;
 import com.students_management.data.entity.Student;
+import com.students_management.data.entity.StudentReport;
 
 @Controller
 @RequestMapping("/students")
@@ -33,6 +35,9 @@ public class StudentController {
 	@Autowired
 	private EnrollmentService enrollmentService;
 
+	@Autowired
+	private StudentReportService studentReportService;
+	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView login() {
 
@@ -80,7 +85,9 @@ public class StudentController {
 		String password = request.getParameter("password");
 
 		studentService.updateInformation(address, email, phone, password);
-
+		StudentReport sr = new StudentReport(StudentSessionData.getLoggedInStudent().getUsername(), "EDIT_PROFILE");
+		sr.setId(Long.valueOf(1));
+		studentReportService.submitReport(sr);
 		return new RedirectView("/students/mainPage");
 	}
 

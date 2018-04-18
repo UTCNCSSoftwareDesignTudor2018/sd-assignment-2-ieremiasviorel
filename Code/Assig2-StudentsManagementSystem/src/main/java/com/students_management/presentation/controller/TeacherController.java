@@ -11,11 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.students_management.business.CourseService;
-import com.students_management.business.InstructorService;
 import com.students_management.business.TeacherService;
 import com.students_management.business.TeacherSessionData;
-import com.students_management.data.entity.Enrollment;
 import com.students_management.data.entity.Teacher;
 
 @Controller
@@ -25,11 +22,11 @@ public class TeacherController {
 	@Autowired
 	private TeacherService teacherService;
 
-	@Autowired
-	private CourseService courseService;
-
-	@Autowired
-	private InstructorService instrusctorService;
+//	@Autowired
+//	private CourseService courseService;
+//
+//	@Autowired
+//	private InstructorService instrusctorService;
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView login() {
