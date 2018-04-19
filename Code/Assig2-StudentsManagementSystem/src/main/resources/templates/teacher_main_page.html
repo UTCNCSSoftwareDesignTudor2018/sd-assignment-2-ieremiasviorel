@@ -12,7 +12,6 @@
 	<div class="tab">
  		<button class="tablinks" onclick="openTab(event, 'Profile')">Profile</button>
  		<button class="tablinks" onclick="openTab(event, 'Grading')">Grading</button>
- 		<button class="tablinks" onclick="openTab(event, 'Courses')">Courses</button>
 	</div>
 	
 	<!-- Tab content -->
@@ -138,35 +137,10 @@
 					<td th:unless="${enrollment.grade != null}">Not graded</td>
 			</table>
 		</div>
-	</div>
-	
-	<!-- Tab content -->
-	<div id="Courses" class="tabcontent">
-		<h3 th:text="${loggedInTeacher.firstName + ' ' + loggedInTeacher.lastName}"></h3>
-
-		<form action="#" th:action="@{/students/enrollCourse}" method="post">
-			<table id="courseTable">
-				<tr>
-					<th></th>
-					<th>Name</th>
-					<th>Code</th>
-					<th>Description</th>
-					<th>Start Date</th>
-					<th>End Date</th>
-				</tr>
-				<tr th:each="course : ${unenrolledCourses}">
-					<td><input class="courseCheckbox" type="checkbox" th:name="${course.courseInfo.code}"/></td>
-					<td th:text="${course.courseInfo.name}"></td>
-					<td th:text="${course.courseInfo.code}"></td>
-					<td th:text="${course.courseInfo.description}"></td>
-					<td th:text="${course.startDate}"></td>
-					<td th:text="${course.endDate}"></td>
-				</tr>
-			</table>
-			<input type="hidden" id="courseCode" name="courseCode"/>
+		
+		<div id="studentReports" class="modal">
 			
-		</form>
-		<button id="enrollCourseBtn">Enroll</button>
+		</div>
 	</div>
 </body>
 </html>
